@@ -2,32 +2,38 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {FlatList} from 'react-native';
 import AppListItem from '../../components/AppListItem';
+import DataAppContainer from '../../components/DataAppContainer';
 import ScreenContainer from '../../components/ScreenContainer';
 import {RootStackParamList} from '../../navigation';
+import {postAPI} from '../../services/PostService';
 
-const mock = [
-  {title: 'fdajslfj', id: 1},
-  {title: 'fdajslfj', id: 2},
-];
-
-type Props = NativeStackScreenProps<RootStackParamList, 'MainScreen'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Main'>;
 
 const MainScreen = ({navigation}: Props) => {
+  const {
+    data: posts,
+    isFetching,
+    refetch,
+    isLoading,
+  } = postAPI.useFetchPostsQuery(10);
+
   return (
     <ScreenContainer>
-      <>
+      <DataAppContainer isLoading={isLoading}>
         <FlatList
-          data={mock}
+          data={posts}
+          refreshing={isFetching}
+          onRefresh={refetch}
           keyExtractor={el => `${el.id}`}
           renderItem={({item}) => (
             <AppListItem
               key={item.id}
-              onPress={() => navigation.push('DetailScreen', {id: item.id})}
+              onPress={() => navigation.push('Detail', {id: item.id})}
               title={item.title}
             />
           )}
         />
-      </>
+      </DataAppContainer>
     </ScreenContainer>
   );
 };
