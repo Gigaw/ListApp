@@ -22,16 +22,23 @@ const LoginScreen = ({navigation}: Props) => {
   return (
     <AppScreenContainer>
       <View style={styles.contentContainer}>
-        <AppIntup value={login} onChangeText={setLogin} name={'login'} />
+        <AppIntup
+          value={login}
+          onChangeText={setLogin}
+          name={'login'}
+          testID="loginInput"
+        />
         <AppIntup
           value={password}
           onChangeText={setPassword}
-          name={'password'}
+          name="password"
+          testID="passwordInput"
         />
         <AppButton
           onPress={() => dispatch(logIn(login, password))}
-          text={'Войти'}
+          text="login"
           style={styles.submitButton}
+          testID="loginButton"
         />
       </View>
       <FullScreenLoader isLoading={isLoading} />
@@ -39,6 +46,7 @@ const LoginScreen = ({navigation}: Props) => {
         visible={!!error}
         text={error}
         onClose={() => dispatch(authSlice.actions.clearError())}
+        testID="authModal"
       />
     </AppScreenContainer>
   );

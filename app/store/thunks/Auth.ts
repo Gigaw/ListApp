@@ -11,19 +11,10 @@ export const logIn =
     try {
       dispatch(authSlice.actions.authFetching());
       if (login === rightLogin && password === rightPassword) {
-        setTimeout(
-          () => dispatch(authSlice.actions.authFetchingSuccess(currentUser)),
-          2000,
-        );
+        dispatch(authSlice.actions.authFetchingSuccess(currentUser));
       } else {
-        setTimeout(
-          () =>
-            dispatch(
-              authSlice.actions.authFetchingError(
-                'invalid username or password',
-              ),
-            ),
-          2000,
+        dispatch(
+          authSlice.actions.authFetchingError('invalid username or password'),
         );
       }
     } catch (e: any) {

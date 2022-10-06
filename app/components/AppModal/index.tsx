@@ -5,11 +5,13 @@ interface Props {
   visible: boolean;
   text: string;
   onClose: () => void;
+  testID?: string;
 }
-const AppModal = ({visible, text, onClose}: Props) => {
+const AppModal = ({visible, text, onClose, testID}: Props) => {
   return (
     <Modal
-      animationType="slide"
+      testID={testID}
+      animationType="fade"
       transparent={true}
       visible={visible}
       onRequestClose={() => {

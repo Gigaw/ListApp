@@ -12,11 +12,13 @@ interface Props {
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
+  testID?: string;
 }
 
-const AppButton = ({text, onPress, style, disabled}: Props) => {
+const AppButton = ({text, onPress, style, disabled, testID}: Props) => {
   return (
     <TouchableOpacity
+      testID={testID}
       style={[styles.container, style, disabled && styles.disabled]}
       onPress={onPress}
       disabled={disabled}>

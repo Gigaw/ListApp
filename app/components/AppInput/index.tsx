@@ -5,9 +5,10 @@ interface Props {
   value: string;
   onChangeText: (text: string) => void;
   name: string;
+  testID?: string;
 }
 
-const AppIntup = ({value, onChangeText, name}: Props) => {
+const AppIntup = ({value, onChangeText, name, testID}: Props) => {
   return (
     <View>
       <Text style={styles.name}>{name}</Text>
@@ -17,6 +18,7 @@ const AppIntup = ({value, onChangeText, name}: Props) => {
           onChangeText={onChangeText}
           autoCapitalize={'none'}
           autoCorrect={false}
+          testID={testID}
         />
       </View>
     </View>
