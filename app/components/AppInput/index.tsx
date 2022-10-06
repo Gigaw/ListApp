@@ -6,15 +6,17 @@ interface Props {
   onChangeText: (text: string) => void;
   name: string;
   testID?: string;
+  isPassword?: boolean;
 }
 
-const AppIntup = ({value, onChangeText, name, testID}: Props) => {
+const AppIntup = ({value, onChangeText, name, testID, isPassword}: Props) => {
   return (
     <View>
       <Text style={styles.name}>{name}</Text>
       <View style={styles.container}>
         <TextInput
           value={value}
+          secureTextEntry={isPassword}
           onChangeText={onChangeText}
           autoCapitalize={'none'}
           autoCorrect={false}

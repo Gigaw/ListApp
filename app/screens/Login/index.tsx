@@ -33,6 +33,7 @@ const LoginScreen = ({navigation}: Props) => {
           onChangeText={setPassword}
           name="password"
           testID="passwordInput"
+          isPassword={true}
         />
         <AppButton
           onPress={() => dispatch(logIn(login, password))}
