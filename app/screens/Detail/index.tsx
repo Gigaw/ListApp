@@ -2,7 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
 import DataAppContainer from '../../components/DataAppContainer';
-import ScreenContainer from '../../components/ScreenContainer';
+import ScreenContainer from '../../components/AppScreenContainer';
 import {RootStackParamList} from '../../navigation';
 import {postAPI} from '../../services/PostService';
 

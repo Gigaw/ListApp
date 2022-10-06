@@ -2,10 +2,10 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
-const ScreenContainer = ({children}: Props) => {
+const AppScreenContainer = ({children}: Props) => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.container}>{children}</View>
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScreenContainer;
+export default AppScreenContainer;
