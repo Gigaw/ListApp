@@ -12,7 +12,12 @@ const AppIntup = ({value, onChangeText, name}: Props) => {
     <View>
       <Text style={styles.name}>{name}</Text>
       <View style={styles.container}>
-        <TextInput value={value} onChangeText={onChangeText} />
+        <TextInput
+          value={value}
+          onChangeText={onChangeText}
+          autoCapitalize={'none'}
+          autoCorrect={false}
+        />
       </View>
     </View>
   );

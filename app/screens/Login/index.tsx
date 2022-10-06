@@ -3,14 +3,21 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import AppButton from '../../components/AppButton';
 import AppIntup from '../../components/AppInput';
+import AppModal from '../../components/AppModal';
 import AppScreenContainer from '../../components/AppScreenContainer';
+import FullScreenLoader from '../../components/FullScreenLoader';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {RootStackParamList} from '../../navigation';
+import {authSlice} from '../../store/reducers/AuthSlice';
+import {logIn} from '../../store/thunks/Auth';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const LoginScreen = ({navigation}: Props) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const {isLoading, error} = useAppSelector(state => state.auth);
+  const dispatch = useAppDispatch();
 
   return (
     <AppScreenContainer>
@@ -22,11 +29,17 @@ const LoginScreen = ({navigation}: Props) => {
           name={'password'}
         />
         <AppButton
-          onPress={() => navigation.navigate('Main')}
+          onPress={() => dispatch(logIn(login, password))}
           text={'Войти'}
           style={styles.submitButton}
         />
       </View>
+      <FullScreenLoader isLoading={isLoading} />
+      <AppModal
+        visible={!!error}
+        text={error}
+        onClose={() => dispatch(authSlice.actions.clearError())}
+      />
     </AppScreenContainer>
   );
 };
